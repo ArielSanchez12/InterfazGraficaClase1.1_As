@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,11 +18,24 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String usuario = nickname.getText();
                 String contra = password.getText();
-                if (!usuario.equals("SANCHEZ") || !contra.equals("SANCHEZ123")) {
-                    mensaje.setText("Verifique que todos los datos sean correctos");
+
+                if (usuario.isEmpty() || contra.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Debes llenar todos los campos");
                 }else{
-                    mensaje.setText("Datos correctos, ingresando...");
+                    if (!usuario.equals("S") || !contra.equals("S1")) {
+                        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta, intenta otra vez");
+                    }else{
+                        JFrame frame = new JFrame("Menu");
+                        frame.setContentPane(new Opciones().menu);
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.setSize(500, 300);
+                        frame.setPreferredSize(new Dimension(500, 300));
+                        frame.setLocationRelativeTo(null);
+                        frame.pack();
+                        frame.setVisible(true);
+                    }
                 }
+
             }
         });
     }
